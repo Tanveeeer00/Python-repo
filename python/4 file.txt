@@ -1,0 +1,225 @@
+TOols 
+
+import openai
+# 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
+# Set up the OpenAI API client
+openai.api_key = "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"
+
+# this loop will let us ask questions continuously and behave like ChatGPT
+while True:
+    # Set up the model and prompt
+    model_engine = "text-davinci-003"
+
+    prompt = input('Enter new prompt: ')
+
+    if 'exit' in prompt or 'quit' in prompt:
+        break
+
+    # Generate a response
+    completion = openai.Completion.create(
+        engine=model_engine,
+        prompt=prompt,
+        max_tokens=1024,
+        n=1,
+        stop=None,
+        temperature=0.5,
+    )
+
+    # extracting useful part of response
+    response = completion.choices[0].text
+
+    # printing response
+    print(response)
+ 50 changes: 50 additions & 0 deletions50  
+bot/chatgui.py
+@@ -0,0 +1,50 @@
+# find more coding projects & free ebooks at Codewithcurious.com
+import tkinter as tk
+import openai
+
+
+# Apply the API Key
+openai.api_key = "Ysk-VNiv5nKHlqtnaqsNLdJzT3BlbkFJiGxEvTeqROkLUSFdRjZj"
+
+# Generate a response using OpenAI GPT-3
+def generate_response(prompt):
+    completions = openai.Completion.create(
+        engine="text-davinci-002",
+        prompt=prompt,
+        max_tokens=1024,
+        n=1,
+        stop=None,
+        temperature=0.5,
+    )
+
+    message = completions.choices[0].text
+    return message
+
+# GUI interface
+def display_response():
+    input_text = input_field.get()
+    response = generate_response(input_text)
+    output_field.config(state='normal')
+    output_field.delete(1.0, tk.END)
+    output_field.insert(tk.END, response)
+    output_field.config(state='disabled')
+
+# Create the main window
+root = tk.Tk()
+root.title("OpenAI Chatbot")
+root.geometry("600x700")
+
+# Create the input field
+input_field = tk.Entry(root, font=("Arial", 14))
+input_field.pack(pady=10)
+
+# Create the submit button
+submit_button = tk.Button(root, text="Submit", font=("Arial", 14), command=display_response)
+submit_button.pack(pady=10)
+
+# Create the output field
+output_field = tk.Text(root, font=("Arial", 14), state='disabled')
+output_field.pack(pady=10)
+
+# Start the GUI event loop
+root.mainloop()
+ 25 changes: 25 additions & 0 deletions25  
+bot/datacollect.py
+@@ -0,0 +1,25 @@
+#import libraries
+import requests
+from bs4 import BeautifulSoup
+
+#url to scrape 
+url = 'https://www.codewithharry.com/' 
+
+#send a request to the url and store the response in a variable 
+response = requests.get(url) 
+
+#parse the response using BeautifulSoup library 
+soup = BeautifulSoup(response.text, 'html.parser') 
+
+ #find all the text elements in the page 
+text_elements = soup.find_all('p') 
+
+ #create an empty list to store the text elements  
+dataset = []  
+
+ #loop through each element and append it to the list  
+for element in text_elements:  
+    dataset.append(element.text)  
+
+ #print out the dataset  
+print(dataset)
+ 113 changes: 113 additions & 0 deletions113  
+bot/tools.txt
+@@ -0,0 +1,113 @@
+
+Validatorai.com                         feedback on your buisness idea
+naminmagic.com and namelix              name and domain
+plai.oi                                 digital marketing for business / automatic your ads
+logoai.com                              logo for business
+mokker.ai                               professional photo
+synthesia.oi                            professional video maker / text to video / talking ai
+videosoftdev.com                        free video editor
+genial.ly                               interactive content
+figma                                   content design
+predis.ai                               post scheduling
+toolzu                                  hashtag research
+creator studio                          profile analytics
+capcut                                  reels editing
+pexels                                  stock videos
+bensound                                sound & music
+quillbot                                rephrased to content 
+copy.ai                                 undetectable 
+relume library                          premade component of website
+futurepedia.io                          every ai at one place
+adobe enhance                           fix bad audio         
+jasper.ai/art                           generate realistic art
+jasper.ai                               writes anything
+donotpay.com                            ai lawyer
+dall-e-2                                generate art from text
+repurpose.io                            automatically share post to all social site
+jenni ai                                write essays
+tome                                    3d modeling
+timely                                  track time
+yuor text to speech                     murf
+toools.design                           tons of design resources
+google autodraw                         ai design tool
+fakeyou.com                             text convert to any character
+komo.ai                                 similar to chatgpt give link and sources
+rtxvideosuperresolution                 convert video in 4k
+runawayml.com                           dozen of ai tool have to create content
+desinify                                remove bg
+pika style                              create mockups from screenshot
+lano.io                                 create invoices
+biteable                                create impactful videos instantly
+appopener                               direct your media channels through 1 tap
+podcastle                               studio quality audio
+adept                                   automatic tasks
+flair                                   design content
+beatoven                                make music
+vidyo                                   long video into clips
+deepNostalgia                           animated faces
+originality                             plagiarism checker
+quickchat                               customer services
+sheet.ai                                ai in spreadsheets
+colormind                               choose color pallet
+removal.ai                              remove bg
+attention insight                       check your design
+play.ht                                 voice generator
+webchatgpt                              extention
+outwrite                                makes you writer
+codewhispher                            writes codes
+flick                                   for finding hashtag
+metricool                               content schelduling
+trello                                  content planning
+freepik                                 graphic assets
+perplexity                              similar to chatgpt and updated data till now
+krisp                                   removes bg voice,noises,echo in meeting
+genei.io                                automatic summarry
+hotpot.ai                               create professional ai
+lumen5.com                              make videos in 5 seconds
+beautiful.ai                            make amazing presentation
+deep-image.ai                           analyze image sentiments
+vrew                                    generate caption from speech in your video
+aimages                                 online video enhancer
+descript.com                            clone your own voice,its can read any content in your voice
+tdlr.al                                 summarize any content
+media.io                                all-in-1 editing tool
+notion                                  organize projects
+inkscape                                create logo and vector 
+pixlr                                   edit photo 
+unsplash                                stock photo 
+canva                                   social media
+carrd                                   build a website
+youtube                                 music for reels
+veed                                    substitle
+frase.io                                optimize content
+theresanaiforthat.com                   search ai tool for specific work
+pictory ai                              video editing take best shot and scene and put them together
+scraemingfrog                           fix all seo techinal issue
+voice.ai                                clone voice of celebrity
+hypefury                                social
+mailerlite                              email
+rebrandry                               links
+typedream                               developer
+gumroad                                 payment
+zapier                                  automations
+calendly                                scheduling
+hemingway                               proofreading
+diagram                                 create icon from speech
+fetech.ai                               ai money project 
+bubble                                  developer
+buffer                                  marketing team
+uiverse.io and neumorphism.io
+flowbase                                premade component
+studio.design                           design website using ai
+mixkit.co                               free marketing assests
+bit.ly/1000freemockups                  free device mockups
+write me.ai                             write content in high quality
+writesonic.com                          generate text about trending topics and image
+word-spinner.com                        rewriter any word,phrase and sentences
+usetwain                                write message and emails for free as like assistant
+you.com                                 search engine that can answer question,suggests ideas,translate,summarize text,compose emails,etc
+
